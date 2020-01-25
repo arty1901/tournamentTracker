@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using TrackerLibrary.Connections;
+using System.Configuration;
 
 namespace TrackerLibrary
 {
@@ -23,6 +25,10 @@ namespace TrackerLibrary
                 TextConntector text = new TextConntector();
                 Connections.Add(text);
             }
+        }
+
+        public static string CnnString(string name)
+        {
         }
     }
 }

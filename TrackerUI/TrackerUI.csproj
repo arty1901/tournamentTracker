@@ -132,9 +132,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TrackerLibrary\TrackerLibrary.csproj">
-      <Project>{436c53a5-c98e-4423-80ab-205112549abe}</Project>
-      <Name>TrackerLibrary</Name>
+    <ProjectReference Include="..\TrackerLib\TrackerLib.csproj">
+      <Project>{8cda9e17-236d-4366-bd26-5ce73fa362ad}</Project>
+      <Name>TrackerLib</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
