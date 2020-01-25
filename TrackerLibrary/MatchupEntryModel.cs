@@ -4,7 +4,7 @@ using System.Text;
 
 namespace TrackerLibrary
 {
-    class MatchupEntryModel
+    public class MatchupEntryModel
     {
         public TeamModel TeamCompeting { get; set; }
         public double Score { get; set; }
