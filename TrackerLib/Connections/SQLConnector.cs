@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.Data;
 using System.Text;
 using System.Windows.Forms;
-using TrackerLibrary.Models;
+using TrackerLib.Models;
 
-namespace TrackerLibrary.Connections
+namespace TrackerLib.Connections
 {
     public class SQLConnector : IDataConnection
     {

@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TrackerLibrary.Connections;
+using TrackerLib.Connections;
 using System.Configuration;
 using TrackerLib;
 
-namespace TrackerLibrary
+namespace TrackerLib
 {
     public static class GlobalConfig
     {

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace TrackerLibrary.Models
+namespace TrackerLib.Models
 {
     public class PrizeModel
     {

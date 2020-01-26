@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using TrackerLibrary.Models;
+using TrackerLib.Models;
 
-namespace TrackerLibrary
+namespace TrackerLib
 {
     public interface IDataConnection
     {

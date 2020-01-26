@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Connections\SQLConnector.cs" />
+    <Compile Include="Connections\TextConnectorProcessor.cs" />
     <Compile Include="Connections\TextConntector.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="GlobalConfig.cs" />
