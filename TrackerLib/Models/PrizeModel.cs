@@ -19,7 +19,7 @@ namespace TrackerLibrary.Models
 
         public PrizeModel(string placeName, string placeNumber, string prizeAmount, string prizePercentage)
         {
-            this.PlaceName = PlaceName;
+            this.PlaceName = placeName;
 
             int placeNumberValue = 0;
             int.TryParse(placeNumber, out placeNumberValue);

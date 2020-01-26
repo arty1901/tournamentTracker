@@ -3,32 +3,34 @@ using System.Collections.Generic;
 using System.Text;
 using TrackerLibrary.Connections;
 using System.Configuration;
+using TrackerLib;
 
 namespace TrackerLibrary
 {
     public static class GlobalConfig
     {
-        public static List<IDataConnection> Connections { get; private set; } = new List<IDataConnection>();
+        public static IDataConnection Connection { get; private set; }
 
-        public static void InitConnections(bool dataBase, bool textFile)
+        public static void InitConnections(DataBaseType type)
         {
-           if (dataBase)
+            switch (type)
             {
-                // TODO - Set up the sql connector properly
-                SQLConnector sql = new SQLConnector();
-                Connections.Add(sql);
-            }
-
-           if (textFile)
-            {
-                // TODO - Save to File
-                TextConntector text = new TextConntector();
-                Connections.Add(text);
+                case DataBaseType.Sql:
+                    SQLConnector sql = new SQLConnector();
+                    Connection = sql;
+                    break;
+                case DataBaseType.TextFile:
+                    TextConntector text = new TextConntector();
+                    Connection = text;
+                    break;
+                default:
+                    break;
             }
         }
 
         public static string CnnString(string name)
         {
+            return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
     }
 }
