@@ -10,6 +10,8 @@ namespace TrackerLib.Connections
     public class TextConntector : IDataConnection
     {
         private static string PrizesFile = "PrizeModels.csv";
+        private static string PersonsFile = "PersonModels.csv";
+
 
         // TODO - wire up the create prize for text file
         public PrizeModel CreatePrize(PrizeModel model)
@@ -41,5 +43,22 @@ namespace TrackerLib.Connections
 
             return model;
         }
+
+        public PersonModel CreatePerson(PersonModel model)
+        {
+            List<PersonModel> persons = PersonsFile.FullFileName().LoadFile().ConvertToPersonModels();
+
+            int currentId = 1;
+            if (persons.Count > 0)
+            {
+                currentId = persons.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+
+            model.Id = currentId;
+            persons.Add(model);
+            persons.SaveToPersonFile(PersonsFile);
+
+            return model;
+        } 
     }
 }

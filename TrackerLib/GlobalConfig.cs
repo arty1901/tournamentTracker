@@ -11,6 +11,10 @@ namespace TrackerLib
     {
         public static IDataConnection Connection { get; private set; }
 
+        /// <summary>
+        /// Initiation of connection
+        /// </summary>
+        /// <param name="type"></param>
         public static void InitConnections(DataBaseType type)
         {
             switch (type)
@@ -28,6 +32,11 @@ namespace TrackerLib
             }
         }
 
+        /// <summary>
+        /// Get ConnectionString for connecting to DB
+        /// </summary>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static string CnnString(string name)
         {
             return ConfigurationManager.ConnectionStrings[name].ConnectionString;
