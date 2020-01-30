@@ -11,6 +11,7 @@ namespace TrackerLib.Connections
     {
         private static string PrizesFile = "PrizeModels.csv";
         private static string PersonsFile = "PersonModels.csv";
+        private static string TeamFile = "TeamModel.csv";
 
 
         // TODO - wire up the create prize for text file
@@ -59,6 +60,28 @@ namespace TrackerLib.Connections
             persons.SaveToPersonFile(PersonsFile);
 
             return model;
-        } 
+        }
+
+        public List<PersonModel> GetAllPersons()
+        {
+            return PersonsFile.FullFileName().LoadFile().ConvertToPersonModels();
+        }
+
+        public TeamModel CreateTeam(TeamModel model)
+        {
+            List<TeamModel> teamList = TeamFile.FullFileName().LoadFile().ConvertToTeamModels(TeamFile);
+
+            int currentId = 1;
+            if (teamList.Count > 0)
+            {
+                currentId = teamList.OrderByDescending(x => x.Id).First().Id + 1;
+            }
+
+            model.Id = currentId;
+            teamList.Add(model);
+            teamList.SaveToTeamFile(TeamFile);
+
+            return model;
+        }
     }
 }

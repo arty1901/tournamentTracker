@@ -103,12 +103,13 @@
             // 
             this.addTeamMemberButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.addTeamMemberButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
-            this.addTeamMemberButton.Location = new System.Drawing.Point(89, 260);
+            this.addTeamMemberButton.Location = new System.Drawing.Point(117, 260);
             this.addTeamMemberButton.Name = "addTeamMemberButton";
             this.addTeamMemberButton.Size = new System.Drawing.Size(188, 39);
             this.addTeamMemberButton.TabIndex = 14;
             this.addTeamMemberButton.Text = "Add Member";
             this.addTeamMemberButton.UseVisualStyleBackColor = true;
+            this.addTeamMemberButton.Click += new System.EventHandler(this.addTeamMemberButton_Click);
             // 
             // groupBox2
             // 
@@ -174,9 +175,9 @@
             this.emailLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.emailLabel.Location = new System.Drawing.Point(6, 113);
             this.emailLabel.Name = "emailLabel";
-            this.emailLabel.Size = new System.Drawing.Size(63, 30);
+            this.emailLabel.Size = new System.Drawing.Size(137, 30);
             this.emailLabel.TabIndex = 17;
-            this.emailLabel.Text = "Email";
+            this.emailLabel.Text = "EmailAddress";
             // 
             // lastNameTextBox
             // 
@@ -236,6 +237,7 @@
             this.deleteSelectedPlayerButton.TabIndex = 18;
             this.deleteSelectedPlayerButton.Text = "Delete";
             this.deleteSelectedPlayerButton.UseVisualStyleBackColor = true;
+            this.deleteSelectedPlayerButton.Click += new System.EventHandler(this.deleteSelectedPlayerButton_Click);
             // 
             // createTeamButton
             // 
@@ -247,6 +249,7 @@
             this.createTeamButton.TabIndex = 19;
             this.createTeamButton.Text = "Create Team";
             this.createTeamButton.UseVisualStyleBackColor = true;
+            this.createTeamButton.Click += new System.EventHandler(this.createTeamButton_Click);
             // 
             // CreateTeamForm
             // 
@@ -268,6 +271,7 @@
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Name = "CreateTeamForm";
             this.Text = "CreateTeamForm";
+            this.Load += new System.EventHandler(this.CreateTeamForm_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);

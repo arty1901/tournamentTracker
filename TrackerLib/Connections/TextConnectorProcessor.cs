@@ -41,7 +41,6 @@ namespace TrackerLib.Connections.TextHelpers
         }
 
         // TODO - пересать методы конвертации в один универсальный метод
-
         /// <summary>
         /// Конвертация переданного списка строк типа string
         /// в список типа PrizeModel
@@ -89,10 +88,38 @@ namespace TrackerLib.Connections.TextHelpers
                 p.Id = int.Parse(cols[0]);
                 p.Firstname = cols[1];
                 p.LastName = cols[2];
-                p.Email = cols[3];
+                p.EmailAddress = cols[3];
                 p.Phone = cols[4];
 
                 output.Add(p);
+            }
+
+            return output;
+        }
+
+        public static List<TeamModel> ConvertToTeamModels(this List<string> lines, string peopleFile)
+        {
+            // id, team name, list of ids separated by pipe
+            List<TeamModel> output = new List<TeamModel>();
+            List<PersonModel> persons = peopleFile.FullFileName().LoadFile().ConvertToPersonModels();
+
+            foreach (string line in lines)
+            {
+                string[] cols = line.Split(',');
+
+                TeamModel t = new TeamModel();
+
+                t.Id = int.Parse(cols[0]);
+                t.TeamName = cols[1];
+
+                string[] personIds = cols[2].Split('|');
+
+                foreach (string id in personIds)
+                {
+                    t.TeamMembers.Add(persons.Where(x => x.Id == int.Parse(id)).First());
+                }
+
+                output.Add(t);
             }
 
             return output;
@@ -116,10 +143,39 @@ namespace TrackerLib.Connections.TextHelpers
 
             foreach (PersonModel p in models)
             {
-                lines.Add($"{p.Firstname},{p.LastName},{p.Email},{p.Phone}");
+                lines.Add($"{p.Id},{p.Firstname},{p.LastName},{p.EmailAddress},{p.Phone}");
             }
 
             File.WriteAllLines(filename.FullFileName(), lines);
+        }
+
+        public static void SaveToTeamFile(this List<TeamModel> models, string filename)
+        {
+            List<string> lines = new List<string>();
+
+            foreach (TeamModel p in models)
+            {
+                lines.Add($"{p.Id},{p.TeamName},{ConvertListTOString(p.TeamMembers)}");
+            }
+
+            File.WriteAllLines(filename.FullFileName(), lines);
+        }
+
+        private static string ConvertListTOString(List<PersonModel> list)
+        {
+            string output = "";
+
+            if (list.Count == 0)
+            {
+                return "";
+            }
+
+            foreach (PersonModel person in list)
+            {
+                output += $"{person.Id}|";
+            }
+
+            return output.Substring(0, output.Length - 1);
         }
     }
 }
