@@ -16,5 +16,10 @@ namespace TrackerUI
         {
             InitializeComponent();
         }
+
+        //TODO - Load a list of teams
+        //TODO - Load a list of prizes
+        //TODO - Load a list of prizes
+        //TODO - Add wiring up of add team button to selected team listbox
     }
 }

@@ -115,6 +115,8 @@ namespace TrackerUI
 
                 WiredUpLists();
             }
+
+            createTeamButton.Enabled = createTeamValueTextBox.TextLength > 0 && selectedTeamMembers.Count > 0;
         }
 
         private void deleteSelectedPlayerButton_Click(object sender, EventArgs e)
@@ -155,6 +157,16 @@ namespace TrackerUI
                 phoneTextBox.Text = phoneTextBox.Text.Remove(phoneTextBox.Text.Length - 1);
                 phoneTextBox.SelectionStart = phoneTextBox.Text.Length;
             }
+        }
+
+        private void teamMembersListBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            deleteSelectedPlayerButton.Enabled = teamMembersListBox.SelectedIndex >= 0;
+        }
+
+        private void createTeamValueTextBox_TextChanged(object sender, EventArgs e)
+        {
+            createTeamButton.Enabled = createTeamValueTextBox.Text.Length > 0 && selectedTeamMembers.Count > 0;
         }
     }
 }

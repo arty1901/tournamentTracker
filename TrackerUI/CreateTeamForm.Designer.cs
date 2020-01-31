@@ -57,6 +57,7 @@
             this.createTeamValueTextBox.Name = "createTeamValueTextBox";
             this.createTeamValueTextBox.Size = new System.Drawing.Size(336, 35);
             this.createTeamValueTextBox.TabIndex = 12;
+            this.createTeamValueTextBox.TextChanged += new System.EventHandler(this.createTeamValueTextBox_TextChanged);
             // 
             // teamNameLabel
             // 
@@ -227,9 +228,11 @@
             this.teamMembersListBox.Name = "teamMembersListBox";
             this.teamMembersListBox.Size = new System.Drawing.Size(315, 452);
             this.teamMembersListBox.TabIndex = 17;
+            this.teamMembersListBox.SelectedIndexChanged += new System.EventHandler(this.teamMembersListBox_SelectedIndexChanged);
             // 
             // deleteSelectedPlayerButton
             // 
+            this.deleteSelectedPlayerButton.Enabled = false;
             this.deleteSelectedPlayerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.deleteSelectedPlayerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.deleteSelectedPlayerButton.Location = new System.Drawing.Point(426, 83);
@@ -242,6 +245,7 @@
             // 
             // createTeamButton
             // 
+            this.createTeamButton.Enabled = false;
             this.createTeamButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.createTeamButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.createTeamButton.Location = new System.Drawing.Point(251, 610);

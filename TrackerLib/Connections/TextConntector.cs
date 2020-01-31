@@ -83,5 +83,10 @@ namespace TrackerLib.Connections
 
             return model;
         }
+
+        public List<TeamModel> GetAllTeams()
+        {
+            return TeamFile.FullFileName().LoadFile().ConvertToTeamModels(PersonsFile);
+        }
     }
 }
