@@ -124,7 +124,7 @@
             this.groupBox2.Controls.Add(this.firstNameLabel);
             this.groupBox2.Location = new System.Drawing.Point(41, 331);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(336, 254);
+            this.groupBox2.Size = new System.Drawing.Size(352, 254);
             this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Add New Member";
@@ -132,10 +132,11 @@
             // phoneTextBox
             // 
             this.phoneTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.phoneTextBox.Location = new System.Drawing.Point(125, 152);
+            this.phoneTextBox.Location = new System.Drawing.Point(143, 152);
             this.phoneTextBox.Name = "phoneTextBox";
             this.phoneTextBox.Size = new System.Drawing.Size(193, 35);
             this.phoneTextBox.TabIndex = 17;
+            this.phoneTextBox.TextChanged += new System.EventHandler(this.phoneTextBox_TextChanged);
             // 
             // label2
             // 
@@ -163,7 +164,7 @@
             // emailTextBox
             // 
             this.emailTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.emailTextBox.Location = new System.Drawing.Point(125, 111);
+            this.emailTextBox.Location = new System.Drawing.Point(143, 111);
             this.emailTextBox.Name = "emailTextBox";
             this.emailTextBox.Size = new System.Drawing.Size(193, 35);
             this.emailTextBox.TabIndex = 17;
@@ -182,7 +183,7 @@
             // lastNameTextBox
             // 
             this.lastNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lastNameTextBox.Location = new System.Drawing.Point(125, 70);
+            this.lastNameTextBox.Location = new System.Drawing.Point(143, 70);
             this.lastNameTextBox.Name = "lastNameTextBox";
             this.lastNameTextBox.Size = new System.Drawing.Size(193, 35);
             this.lastNameTextBox.TabIndex = 17;
@@ -201,7 +202,7 @@
             // firstNameTextBox
             // 
             this.firstNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.firstNameTextBox.Location = new System.Drawing.Point(125, 29);
+            this.firstNameTextBox.Location = new System.Drawing.Point(143, 29);
             this.firstNameTextBox.Name = "firstNameTextBox";
             this.firstNameTextBox.Size = new System.Drawing.Size(193, 35);
             this.firstNameTextBox.TabIndex = 17;

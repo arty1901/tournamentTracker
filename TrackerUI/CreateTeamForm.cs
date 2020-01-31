@@ -5,10 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using TrackerLib;
 using TrackerLib.Models;
+using TrackerUI.Helper_Methods;
 
 namespace TrackerUI
 {
@@ -39,7 +41,7 @@ namespace TrackerUI
 
         private void createMemberButton_Click(object sender, EventArgs e)
         {
-            if (ValidateForm())
+            if (ValidateNewMemberForm())
             {
                 PersonModel p = new PersonModel();
 
@@ -59,34 +61,41 @@ namespace TrackerUI
                 emailTextBox.Text = "";
                 phoneTextBox.Text = "";
             }
-            else
-            {
-                MessageBox.Show("you need fill all fields", "error Input", MessageBoxButtons.OK);
-            }
         }
 
-        private bool ValidateForm()
+        private bool ValidateNewMemberForm()
         {
             // TODO - add validation to the form
             if (firstNameTextBox.Text.Length == 0)
             {
+                Helper.ShowMessage("First Name field can not be empty", true);
                 return false;
             }
 
             if (lastNameTextBox.Text.Length == 0)
             {
+                Helper.ShowMessage("Last Name field can not be empty", true);
                 return false;
             }
 
             if (emailTextBox.Text.Length == 0)
             {
+                Helper.ShowMessage("Email field can not be empty", true);
+                return false;
+            }
+
+            if (!Helper.ValidateEmail(emailTextBox.Text))
+            {
+                Helper.ShowMessage("Typed invalid email", true);
                 return false;
             }
 
             if (phoneTextBox.Text.Length == 0)
             {
+                Helper.ShowMessage("Phone Number field can not be empty", true);
                 return false;
             }
+
             return true;
         }
 
@@ -134,6 +143,18 @@ namespace TrackerUI
             team.TeamMembers = selectedTeamMembers;
 
             GlobalConfig.Connection.CreateTeam(team);
+        }
+
+        private void phoneTextBox_TextChanged(object sender, EventArgs e)
+        {
+            string pattern = @"[^0-9]";
+            Regex regex = new Regex(pattern);
+
+            if (regex.IsMatch(phoneTextBox.Text))
+            {
+                phoneTextBox.Text = phoneTextBox.Text.Remove(phoneTextBox.Text.Length - 1);
+                phoneTextBox.SelectionStart = phoneTextBox.Text.Length;
+            }
         }
     }
 }
