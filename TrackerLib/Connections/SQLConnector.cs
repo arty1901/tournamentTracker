@@ -1,17 +1,14 @@
 ﻿using Dapper;
-using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Text;
-using System.Windows.Forms;
 using TrackerLib.Models;
 using System.Data.SqlClient;
 
 namespace TrackerLib.Connections
 {
-    public class SQLConnector : IDataConnection
+    public class SqlConnector : IDataConnection
     {
-        private const string tournamentDB = "Tournaments";
+        private const string TournamentDb = "Tournaments";
 
         /// <summary>
         /// Save a new prize to a database
@@ -20,7 +17,7 @@ namespace TrackerLib.Connections
         /// <returns>The prize info, including the id</returns>
         public PrizeModel CreatePrize(PrizeModel model)
         {
-            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(tournamentDB)))
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(TournamentDb)))
             {
                 var p = new DynamicParameters();
                 p.Add("@PlaceNumber", model.PlaceNumber);
@@ -41,7 +38,7 @@ namespace TrackerLib.Connections
 
         public List<PrizeModel> GetAllPrizes()
         {
-            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(tournamentDB)))
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(TournamentDb)))
             {
                 return connection.Query<PrizeModel>("dbo.spPrizes_GetAllPrizes").AsList();
             }
@@ -54,7 +51,7 @@ namespace TrackerLib.Connections
         /// <returns>The person info, including the id</returns>
         public PersonModel CreatePerson(PersonModel model)
         {
-            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(tournamentDB)))
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(TournamentDb)))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@FirstName", model.FirstName);
@@ -75,7 +72,7 @@ namespace TrackerLib.Connections
 
         public TournamentModel CreateTournament(TournamentModel tournament)
         {
-            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(tournamentDB)))
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(TournamentDb)))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@TournamentName", tournament.TournamentName);
@@ -117,7 +114,7 @@ namespace TrackerLib.Connections
         {
             List<PersonModel> output;
 
-            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(tournamentDB)))
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(TournamentDb)))
             {
                 output = connection.Query<PersonModel>("dbo.spPerson_GetAll").AsList();
             }
@@ -127,7 +124,7 @@ namespace TrackerLib.Connections
 
         public TeamModel CreateTeam(TeamModel model)
         {
-            using ( IDbConnection connection = new SqlConnection( GlobalConfig.CnnString(tournamentDB) ) )
+            using ( IDbConnection connection = new SqlConnection( GlobalConfig.CnnString(TournamentDb) ) )
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@TeamName", model.TeamName);
@@ -157,7 +154,7 @@ namespace TrackerLib.Connections
         {
             List<TeamModel> output;
 
-            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(tournamentDB)))
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(TournamentDb)))
             {
                 output = connection.Query<TeamModel>("dbo.spTeams_GetAll").AsList();
 

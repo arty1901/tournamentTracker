@@ -20,7 +20,7 @@ namespace TrackerLib
             switch (type)
             {
                 case DataBaseType.Sql:
-                    SQLConnector sql = new SQLConnector();
+                    SqlConnector sql = new SqlConnector();
                     Connection = sql;
                     break;
                 case DataBaseType.TextFile:
