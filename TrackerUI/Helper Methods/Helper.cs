@@ -11,7 +11,7 @@ namespace TrackerUI.Helper_Methods
 {
     static class Helper
     {
-        static public bool ValidateEmail(string email)
+        public static bool ValidateEmail(string email)
         {
             try
             {
@@ -25,7 +25,7 @@ namespace TrackerUI.Helper_Methods
             }
         }
 
-        static public void ShowMessage(string message, bool isError)
+        public static void ShowMessage(string message, bool isError)
         {
             if (isError)
                 MessageBox.Show(message, "Error", MessageBoxButtons.OKCancel);

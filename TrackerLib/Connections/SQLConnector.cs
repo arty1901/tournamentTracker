@@ -90,7 +90,8 @@ namespace TrackerLib.Connections
                     p.Add("@TournamentID", tournament.Id);
                     p.Add("@TeamID", team.Id);
 
-                    connection.Execute("@dbo.spTournamentEntries_Insert", p, commandType: CommandType.StoredProcedure);
+                    // Could not find stored procedure '@dbo.spTournamentEntries_Insert'.'
+                    connection.Execute("dbo.spTournamentEntries_Insert", p, commandType: CommandType.StoredProcedure);
                 }
 
                 foreach (PrizeModel prize in tournament.Prizes)

@@ -30,7 +30,7 @@
         {
             this.createTournamentLabel = new System.Windows.Forms.Label();
             this.tournamentNameLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.tournamentNameTextBox = new System.Windows.Forms.TextBox();
             this.entryFeeLabel = new System.Windows.Forms.Label();
             this.entryFeeTextBox = new System.Windows.Forms.TextBox();
             this.selectTeamLabel = new System.Windows.Forms.Label();
@@ -50,10 +50,8 @@
             // createTournamentLabel
             // 
             this.createTournamentLabel.AutoSize = true;
-            this.createTournamentLabel.Font = new System.Drawing.Font("Segoe UI Light", 27.75F,
-                System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.createTournamentLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
-                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
+            this.createTournamentLabel.Font = new System.Drawing.Font("Segoe UI Light", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.createTournamentLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.createTournamentLabel.Location = new System.Drawing.Point(12, 22);
             this.createTournamentLabel.Name = "createTournamentLabel";
             this.createTournamentLabel.Size = new System.Drawing.Size(317, 50);
@@ -63,31 +61,27 @@
             // tournamentNameLabel
             // 
             this.tournamentNameLabel.AutoSize = true;
-            this.tournamentNameLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F,
-                System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.tournamentNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
-                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
+            this.tournamentNameLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tournamentNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.tournamentNameLabel.Location = new System.Drawing.Point(37, 92);
             this.tournamentNameLabel.Name = "tournamentNameLabel";
             this.tournamentNameLabel.Size = new System.Drawing.Size(185, 30);
             this.tournamentNameLabel.TabIndex = 3;
             this.tournamentNameLabel.Text = "Tournament Name";
             // 
-            // textBox1
+            // tournamentNameTextBox
             // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(42, 125);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(285, 35);
-            this.textBox1.TabIndex = 4;
+            this.tournamentNameTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.tournamentNameTextBox.Location = new System.Drawing.Point(42, 125);
+            this.tournamentNameTextBox.Name = "tournamentNameTextBox";
+            this.tournamentNameTextBox.Size = new System.Drawing.Size(285, 35);
+            this.tournamentNameTextBox.TabIndex = 4;
             // 
             // entryFeeLabel
             // 
             this.entryFeeLabel.AutoSize = true;
-            this.entryFeeLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular,
-                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.entryFeeLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
-                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
+            this.entryFeeLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.entryFeeLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.entryFeeLabel.Location = new System.Drawing.Point(37, 181);
             this.entryFeeLabel.Name = "entryFeeLabel";
             this.entryFeeLabel.Size = new System.Drawing.Size(99, 30);
@@ -106,10 +100,8 @@
             // selectTeamLabel
             // 
             this.selectTeamLabel.AutoSize = true;
-            this.selectTeamLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular,
-                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.selectTeamLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
-                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
+            this.selectTeamLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.selectTeamLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.selectTeamLabel.Location = new System.Drawing.Point(37, 241);
             this.selectTeamLabel.Name = "selectTeamLabel";
             this.selectTeamLabel.Size = new System.Drawing.Size(122, 30);
@@ -127,22 +119,19 @@
             // createTeamLinkLabel
             // 
             this.createTeamLinkLabel.AutoSize = true;
-            this.createTeamLinkLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular,
-                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.createTeamLinkLabel.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.createTeamLinkLabel.Location = new System.Drawing.Point(246, 251);
             this.createTeamLinkLabel.Name = "createTeamLinkLabel";
             this.createTeamLinkLabel.Size = new System.Drawing.Size(88, 21);
             this.createTeamLinkLabel.TabIndex = 8;
             this.createTeamLinkLabel.TabStop = true;
             this.createTeamLinkLabel.Text = "Create new";
-            this.createTeamLinkLabel.LinkClicked +=
-                new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.createTeamLinkLabel_LinkClicked);
+            this.createTeamLinkLabel.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.createTeamLinkLabel_LinkClicked);
             // 
             // addTeamButton
             // 
             this.addTeamButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addTeamButton.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
-                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
+            this.addTeamButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.addTeamButton.Location = new System.Drawing.Point(98, 319);
             this.addTeamButton.Name = "addTeamButton";
             this.addTeamButton.Size = new System.Drawing.Size(188, 39);
@@ -154,8 +143,7 @@
             // createPrizeButton
             // 
             this.createPrizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createPrizeButton.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
-                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
+            this.createPrizeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.createPrizeButton.Location = new System.Drawing.Point(98, 376);
             this.createPrizeButton.Name = "createPrizeButton";
             this.createPrizeButton.Size = new System.Drawing.Size(188, 39);
@@ -177,10 +165,8 @@
             // touranmentPlayersLabel
             // 
             this.touranmentPlayersLabel.AutoSize = true;
-            this.touranmentPlayersLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F,
-                System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.touranmentPlayersLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
-                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
+            this.touranmentPlayersLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.touranmentPlayersLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.touranmentPlayersLabel.Location = new System.Drawing.Point(376, 92);
             this.touranmentPlayersLabel.Name = "touranmentPlayersLabel";
             this.touranmentPlayersLabel.Size = new System.Drawing.Size(155, 30);
@@ -190,8 +176,7 @@
             // deleteSelectedPlayerButton
             // 
             this.deleteSelectedPlayerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteSelectedPlayerButton.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
-                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
+            this.deleteSelectedPlayerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.deleteSelectedPlayerButton.Location = new System.Drawing.Point(648, 165);
             this.deleteSelectedPlayerButton.Name = "deleteSelectedPlayerButton";
             this.deleteSelectedPlayerButton.Size = new System.Drawing.Size(116, 72);
@@ -203,10 +188,8 @@
             // prizesLabel
             // 
             this.prizesLabel.AutoSize = true;
-            this.prizesLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular,
-                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.prizesLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
-                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
+            this.prizesLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.prizesLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.prizesLabel.Location = new System.Drawing.Point(376, 286);
             this.prizesLabel.Name = "prizesLabel";
             this.prizesLabel.Size = new System.Drawing.Size(67, 30);
@@ -216,8 +199,7 @@
             // deleteSelectedPrizeButton
             // 
             this.deleteSelectedPrizeButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteSelectedPrizeButton.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
-                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
+            this.deleteSelectedPrizeButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.deleteSelectedPrizeButton.Location = new System.Drawing.Point(648, 359);
             this.deleteSelectedPrizeButton.Name = "deleteSelectedPrizeButton";
             this.deleteSelectedPrizeButton.Size = new System.Drawing.Size(116, 72);
@@ -239,8 +221,7 @@
             // createTournamentButton
             // 
             this.createTournamentButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createTournamentButton.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
-                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
+            this.createTournamentButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
             this.createTournamentButton.Location = new System.Drawing.Point(286, 494);
             this.createTournamentButton.Name = "createTournamentButton";
             this.createTournamentButton.Size = new System.Drawing.Size(278, 72);
@@ -268,25 +249,25 @@
             this.Controls.Add(this.entryFeeLabel);
             this.Controls.Add(this.selectTeamLabel);
             this.Controls.Add(this.prizesLabel);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.tournamentNameTextBox);
             this.Controls.Add(this.touranmentPlayersLabel);
             this.Controls.Add(this.tournamentNameLabel);
             this.Controls.Add(this.createTournamentLabel);
-            this.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular,
-                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Name = "CreateTournamentForm";
             this.Text = "Create Tournament";
             this.Load += new System.EventHandler(this.CreateTournamentForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion
 
         private System.Windows.Forms.Label createTournamentLabel;
         private System.Windows.Forms.Label tournamentNameLabel;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox tournamentNameTextBox;
         private System.Windows.Forms.Label entryFeeLabel;
         private System.Windows.Forms.TextBox entryFeeTextBox;
         private System.Windows.Forms.Label selectTeamLabel;

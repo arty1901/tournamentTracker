@@ -42,7 +42,7 @@ namespace TrackerUI
         private void addTeamButton_Click(object sender, EventArgs e)
         {
             TeamModel t = (TeamModel)selectTeamDropDown.SelectedItem;
-            
+
             if (t != null)
             {
                 availableTeams.Remove(t);
@@ -55,9 +55,9 @@ namespace TrackerUI
         private void deleteSelectedPlayerButton_Click(object sender, EventArgs e)
         {
             TeamModel team = (TeamModel)tournamentTeamsListBox.SelectedItem;
-            
+
             if (team == null) return;
-            
+
             availableTeams.Add(team);
             selectedTeams.Remove(team);
 
@@ -66,12 +66,12 @@ namespace TrackerUI
 
         private void deleteSelectedPrizeButton_Click(object sender, EventArgs e)
         {
-            PrizeModel prize = (PrizeModel) prizeListBox.SelectedItem;
-            
+            PrizeModel prize = (PrizeModel)prizeListBox.SelectedItem;
+
             if (prize == null) return;
-            
+
             selectedPrizes.Remove(prize);
-                
+
             WiredUpLists();
         }
 
@@ -80,8 +80,6 @@ namespace TrackerUI
             // call create prize form
             CreatePrizeForm frm = new CreatePrizeForm(this);
             frm.Show();
-
-            
         }
 
         public void PrizeComplete(PrizeModel prizeModel)
@@ -106,7 +104,22 @@ namespace TrackerUI
 
         private void createTournamentButton_Click(object sender, EventArgs e)
         {
-            // TODO - 
+            // TODO - Wired up click event with save to DB\file action
+            // add team list and prize list to Tournament model
+            if (selectedPrizes.Count == 0 || selectedTeams.Count == 0) return;
+
+            decimal fee = decimal.Parse(entryFeeTextBox.Text);
+
+            TournamentModel tournament = new TournamentModel
+            {
+                TournamentName = tournamentNameTextBox.Text,
+                EntryFee = fee,
+                EnteredTeams = selectedTeams,
+                Prizes = selectedPrizes,
+                Active = true
+            };
+
+            GlobalConfig.Connection.CreateTournament(tournament);
         }
     }
 }

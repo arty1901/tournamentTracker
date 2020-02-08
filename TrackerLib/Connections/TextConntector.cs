@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 using TrackerLib.Models;
 using TrackerLib.Connections.TextHelpers;
 using System.Linq;
@@ -76,6 +75,11 @@ namespace TrackerLib.Connections
             teamList.SaveToTeamFile(TeamFile);
 
             return model;
+        }
+
+        public TournamentModel CreateTournament(TournamentModel tournament)
+        {
+            throw new NotImplementedException();
         }
 
         public List<TeamModel> GetAllTeams()
