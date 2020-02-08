@@ -28,9 +28,9 @@ namespace TrackerUI.Helper_Methods
         public static void ShowMessage(string message, bool isError)
         {
             if (isError)
-                MessageBox.Show(message, "Error", MessageBoxButtons.OKCancel);
+                MessageBox.Show(message, "Error", MessageBoxButtons.OKCancel, MessageBoxIcon.Error);
             else
-                MessageBox.Show(message, "Info", MessageBoxButtons.OK);
+                MessageBox.Show(message, "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 }

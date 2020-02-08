@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Configuration;
 using System.IO;
 using TrackerLib.Models;
@@ -155,13 +152,13 @@ namespace TrackerLib.Connections.TextHelpers
 
             foreach (TeamModel p in models)
             {
-                lines.Add($"{p.Id},{p.TeamName},{ConvertListTOString(p.TeamMembers)}");
+                lines.Add($"{p.Id},{p.TeamName},{ConvertListToString(p.TeamMembers)}");
             }
 
             File.WriteAllLines(filename.FullFileName(), lines);
         }
 
-        private static string ConvertListTOString(List<PersonModel> list)
+        private static string ConvertListToString(List<PersonModel> list)
         {
             string output = "";
 

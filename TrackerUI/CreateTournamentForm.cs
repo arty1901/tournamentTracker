@@ -110,13 +110,14 @@ namespace TrackerUI
 
             decimal fee = decimal.Parse(entryFeeTextBox.Text);
 
+            // create match up
+
             TournamentModel tournament = new TournamentModel
             {
                 TournamentName = tournamentNameTextBox.Text,
                 EntryFee = fee,
                 EnteredTeams = selectedTeams,
-                Prizes = selectedPrizes,
-                Active = true
+                Prizes = selectedPrizes
             };
 
             GlobalConfig.Connection.CreateTournament(tournament);
