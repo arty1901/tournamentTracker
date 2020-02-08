@@ -14,19 +14,20 @@ using TrackerUI.Helper_Methods;
 
 namespace TrackerUI
 {
-    public partial class CreateTeamForm : Form
+    public partial class CreateTeamForm : AbstractCommon
     {
         private List<PersonModel> availableTeamMembers = GlobalConfig.Connection.GetAllPersons();
         private List<PersonModel> selectedTeamMembers = new List<PersonModel>();
+        private ITeamRequester callingForm;
 
-        public CreateTeamForm()
+        public CreateTeamForm(ITeamRequester team)
         {
             InitializeComponent();
-
+            callingForm = team;
             WiredUpLists();
         }
 
-        private void WiredUpLists()
+        override public void WiredUpLists()
         {
             selectTeamMemberDropDown.DataSource = null;
 
@@ -45,7 +46,7 @@ namespace TrackerUI
             {
                 PersonModel p = new PersonModel();
 
-                p.Firstname = firstNameTextBox.Text;
+                p.FirstName = firstNameTextBox.Text;
                 p.LastName = lastNameTextBox.Text;
                 p.EmailAddress = emailTextBox.Text;
                 p.Phone = phoneTextBox.Text;
@@ -65,7 +66,6 @@ namespace TrackerUI
 
         private bool ValidateNewMemberForm()
         {
-            // TODO - add validation to the form
             if (firstNameTextBox.Text.Length == 0)
             {
                 Helper.ShowMessage("First Name field can not be empty", true);
@@ -145,6 +145,10 @@ namespace TrackerUI
             team.TeamMembers = selectedTeamMembers;
 
             GlobalConfig.Connection.CreateTeam(team);
+
+            callingForm.TeamComplete(team);
+
+            this.Close();
         }
 
         private void phoneTextBox_TextChanged(object sender, EventArgs e)

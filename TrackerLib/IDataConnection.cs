@@ -10,7 +10,9 @@ namespace TrackerLib
         PrizeModel CreatePrize(PrizeModel model);
         PersonModel CreatePerson(PersonModel model);
         TeamModel CreateTeam(TeamModel team);
+        TournamentModel CreateTournament(TournamentModel tournament);
         List<PersonModel> GetAllPersons();
         List<TeamModel> GetAllTeams();
+        List<PrizeModel> GetAllPrizes();
     }
 }

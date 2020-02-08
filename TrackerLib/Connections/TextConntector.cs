@@ -14,7 +14,6 @@ namespace TrackerLib.Connections
         private static string TeamFile = "TeamModel.csv";
 
 
-        // TODO - wire up the create prize for text file
         public PrizeModel CreatePrize(PrizeModel model)
         {
             // создан параметр в app.config filepath
@@ -62,11 +61,6 @@ namespace TrackerLib.Connections
             return model;
         }
 
-        public List<PersonModel> GetAllPersons()
-        {
-            return PersonsFile.FullFileName().LoadFile().ConvertToPersonModels();
-        }
-
         public TeamModel CreateTeam(TeamModel model)
         {
             List<TeamModel> teamList = TeamFile.FullFileName().LoadFile().ConvertToTeamModels(TeamFile);
@@ -87,6 +81,16 @@ namespace TrackerLib.Connections
         public List<TeamModel> GetAllTeams()
         {
             return TeamFile.FullFileName().LoadFile().ConvertToTeamModels(PersonsFile);
+        }
+
+        public List<PrizeModel> GetAllPrizes()
+        {
+            return PrizesFile.FullFileName().LoadFile().ConverToPrizeModels();
+        }
+
+        public List<PersonModel> GetAllPersons()
+        {
+            return PersonsFile.FullFileName().LoadFile().ConvertToPersonModels();
         }
     }
 }

@@ -64,7 +64,12 @@
     <Compile Include="CreateTournamentForm.Designer.cs">
       <DependentUpon>CreateTournamentForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Helper Methods\AbstractCommon.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Helper Methods\Helper.cs" />
+    <Compile Include="IPrizeRequester.cs" />
+    <Compile Include="ITeamRequester.cs" />
     <Compile Include="TournamentDashbordForm.cs">
       <SubType>Form</SubType>
     </Compile>

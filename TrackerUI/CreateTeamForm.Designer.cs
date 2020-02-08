@@ -62,8 +62,10 @@
             // teamNameLabel
             // 
             this.teamNameLabel.AutoSize = true;
-            this.teamNameLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.teamNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.teamNameLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.teamNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
+                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
             this.teamNameLabel.Location = new System.Drawing.Point(36, 95);
             this.teamNameLabel.Name = "teamNameLabel";
             this.teamNameLabel.Size = new System.Drawing.Size(123, 30);
@@ -73,8 +75,10 @@
             // CreateTeamLabel
             // 
             this.CreateTeamLabel.AutoSize = true;
-            this.CreateTeamLabel.Font = new System.Drawing.Font("Segoe UI Light", 27.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.CreateTeamLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.CreateTeamLabel.Font = new System.Drawing.Font("Segoe UI Light", 27.75F,
+                System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.CreateTeamLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
+                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
             this.CreateTeamLabel.Location = new System.Drawing.Point(32, 25);
             this.CreateTeamLabel.Name = "CreateTeamLabel";
             this.CreateTeamLabel.Size = new System.Drawing.Size(213, 50);
@@ -84,8 +88,10 @@
             // selectTeamLabel
             // 
             this.selectTeamLabel.AutoSize = true;
-            this.selectTeamLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.selectTeamLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.selectTeamLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.selectTeamLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
+                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
             this.selectTeamLabel.Location = new System.Drawing.Point(36, 183);
             this.selectTeamLabel.Name = "selectTeamLabel";
             this.selectTeamLabel.Size = new System.Drawing.Size(205, 30);
@@ -103,7 +109,8 @@
             // addTeamMemberButton
             // 
             this.addTeamMemberButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.addTeamMemberButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.addTeamMemberButton.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
+                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
             this.addTeamMemberButton.Location = new System.Drawing.Point(117, 260);
             this.addTeamMemberButton.Name = "addTeamMemberButton";
             this.addTeamMemberButton.Size = new System.Drawing.Size(188, 39);
@@ -142,8 +149,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.label2.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label2.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))), ((int) (((byte) (153)))),
+                ((int) (((byte) (255)))));
             this.label2.Location = new System.Drawing.Point(6, 154);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(72, 30);
@@ -153,7 +162,8 @@
             // createMemberButton
             // 
             this.createMemberButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createMemberButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.createMemberButton.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
+                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
             this.createMemberButton.Location = new System.Drawing.Point(67, 209);
             this.createMemberButton.Name = "createMemberButton";
             this.createMemberButton.Size = new System.Drawing.Size(188, 39);
@@ -173,8 +183,10 @@
             // emailLabel
             // 
             this.emailLabel.AutoSize = true;
-            this.emailLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.emailLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.emailLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.emailLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))), ((int) (((byte) (153)))),
+                ((int) (((byte) (255)))));
             this.emailLabel.Location = new System.Drawing.Point(6, 113);
             this.emailLabel.Name = "emailLabel";
             this.emailLabel.Size = new System.Drawing.Size(137, 30);
@@ -192,8 +204,10 @@
             // lastNameLabel
             // 
             this.lastNameLabel.AutoSize = true;
-            this.lastNameLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lastNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.lastNameLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.lastNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
+                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
             this.lastNameLabel.Location = new System.Drawing.Point(6, 72);
             this.lastNameLabel.Name = "lastNameLabel";
             this.lastNameLabel.Size = new System.Drawing.Size(112, 30);
@@ -211,8 +225,10 @@
             // firstNameLabel
             // 
             this.firstNameLabel.AutoSize = true;
-            this.firstNameLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.firstNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.firstNameLabel.Font = new System.Drawing.Font("Segoe UI Light", 16F, System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.firstNameLabel.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
+                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
             this.firstNameLabel.Location = new System.Drawing.Point(6, 31);
             this.firstNameLabel.Name = "firstNameLabel";
             this.firstNameLabel.Size = new System.Drawing.Size(113, 30);
@@ -228,13 +244,15 @@
             this.teamMembersListBox.Name = "teamMembersListBox";
             this.teamMembersListBox.Size = new System.Drawing.Size(315, 452);
             this.teamMembersListBox.TabIndex = 17;
-            this.teamMembersListBox.SelectedIndexChanged += new System.EventHandler(this.teamMembersListBox_SelectedIndexChanged);
+            this.teamMembersListBox.SelectedIndexChanged +=
+                new System.EventHandler(this.teamMembersListBox_SelectedIndexChanged);
             // 
             // deleteSelectedPlayerButton
             // 
             this.deleteSelectedPlayerButton.Enabled = false;
             this.deleteSelectedPlayerButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.deleteSelectedPlayerButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.deleteSelectedPlayerButton.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
+                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
             this.deleteSelectedPlayerButton.Location = new System.Drawing.Point(426, 83);
             this.deleteSelectedPlayerButton.Name = "deleteSelectedPlayerButton";
             this.deleteSelectedPlayerButton.Size = new System.Drawing.Size(117, 39);
@@ -247,7 +265,8 @@
             // 
             this.createTeamButton.Enabled = false;
             this.createTeamButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.createTeamButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.createTeamButton.ForeColor = System.Drawing.Color.FromArgb(((int) (((byte) (51)))),
+                ((int) (((byte) (153)))), ((int) (((byte) (255)))));
             this.createTeamButton.Location = new System.Drawing.Point(251, 610);
             this.createTeamButton.Name = "createTeamButton";
             this.createTeamButton.Size = new System.Drawing.Size(278, 72);
@@ -272,7 +291,8 @@
             this.Controls.Add(this.createTeamValueTextBox);
             this.Controls.Add(this.teamNameLabel);
             this.Controls.Add(this.CreateTeamLabel);
-            this.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Font = new System.Drawing.Font("Segoe UI Light", 15.75F, System.Drawing.FontStyle.Regular,
+                System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.Margin = new System.Windows.Forms.Padding(6, 7, 6, 7);
             this.Name = "CreateTeamForm";
             this.Text = "CreateTeamForm";
@@ -281,7 +301,6 @@
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         #endregion
