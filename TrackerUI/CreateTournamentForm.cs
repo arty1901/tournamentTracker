@@ -110,7 +110,7 @@ namespace TrackerUI
 
             decimal fee = decimal.Parse(entryFeeTextBox.Text);
 
-            // create match up
+            // TODO - wire up match up
 
             TournamentModel tournament = new TournamentModel
             {

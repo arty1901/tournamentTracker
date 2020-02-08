@@ -8,7 +8,7 @@ namespace TrackerLib.Models
     {
         public TeamModel TeamCompeting { get; set; }
         public double Score { get; set; }
-        public MatchupModel ParentMatchup { get; set; }
+        public MatchUpModel ParentMatchUp { get; set; }
 
     }
 }

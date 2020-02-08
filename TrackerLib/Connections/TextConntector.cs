@@ -8,24 +8,16 @@ namespace TrackerLib.Connections
 {
     public class TextConntector : IDataConnection
     {
-        private static string PrizesFile = "PrizeModels.csv";
-        private static string PersonsFile = "PersonModels.csv";
-        private static string TeamFile = "TeamModel.csv";
+        private const string PrizesFile = "PrizeModels.csv";
+        private const string PersonsFile = "PersonModels.csv";
+        private const string TeamFile = "TeamModel.csv";
+        private const string TournamentFile = "TournamentModel.csv";
 
 
         public PrizeModel CreatePrize(PrizeModel model)
         {
-            // создан параметр в app.config filepath
-            // он служит для хранеия пути, куда будут сохраняться все файлы
-
-            // План работы с сохранением файлов
-            // 1. Загрузить текстовый файл
-            // 2. Конвертировать текст в List<PrizeModel>
             List<PrizeModel> prizes = PrizesFile.FullFileName().LoadFile().ConverToPrizeModels();
 
-            // 3. Найти id (max id)
-            // сортируем в убывающем порядке и получаем первый элемент листа с прибавлением к нему единицы
-            // это даст новый id для новой записи в файл
             int currentId = 1;
             if (prizes.Count > 0)
             {
@@ -33,11 +25,8 @@ namespace TrackerLib.Connections
             }
             model.Id = currentId;
 
-            // 4. Добавить новую запись с новым id (max + 1)
             prizes.Add(model);
 
-            // 5. Конвертировать призы в List<string>
-            // 6. Сохранить List<string> в текстовый файл
             prizes.SaveToPrizeFile(PrizesFile);
 
             return model;
@@ -77,9 +66,18 @@ namespace TrackerLib.Connections
             return model;
         }
 
-        public TournamentModel CreateTournament(TournamentModel tournament)
+        public void CreateTournament(TournamentModel model)
         {
-            throw new NotImplementedException();
+            List<TournamentModel> tournament = TournamentFile.FullFileName().LoadFile().ConvertTournamentModel(TeamFile, PrizesFile, PersonsFile);
+
+            int currentId = tournament.Count > 0 ? tournament.OrderByDescending(x => x.Id).First().Id + 1 : 1;
+
+            model.Id = currentId;
+
+            tournament.Add(model);
+
+            tournament.SaveToTournamentFile(TournamentFile);
+
         }
 
         public List<TeamModel> GetAllTeams()
