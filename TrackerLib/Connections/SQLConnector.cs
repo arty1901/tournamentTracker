@@ -27,15 +27,17 @@ namespace TrackerLib.Connections
                 p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
                 connection.Execute("dbo.spPrizes_Insert", p, commandType: CommandType.StoredProcedure);
-
-                // Эта команда просматривает динамические параметры (в данном случае это "р")
-                // и ищет переданное имя параметра  
+                
                 model.Id = p.Get<int>("@Id");
 
                 return model;
             }
         }
 
+        /// <summary>
+        /// Get all prizes
+        /// </summary>
+        /// <returns>List of prizes</returns>
         public List<PrizeModel> GetAllPrizes()
         {
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(TournamentDb)))
@@ -70,56 +72,24 @@ namespace TrackerLib.Connections
             }
         }
 
+        /// <summary>
+        /// Save a tournament
+        /// </summary>
+        /// <param name="tournament"></param>
         public void CreateTournament(TournamentModel tournament)
         {
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(TournamentDb)))
             {
-                SaveTournament( tournament, connection );
+                SqlConnectorProcessor.SaveTournament(tournament, connection);
 
-                SaveTournamentEntries( tournament, connection );
+                SqlConnectorProcessor.SaveTournamentEntries(tournament, connection);
 
-                SaveTournamentPrizes( tournament, connection );
+                SqlConnectorProcessor.SaveTournamentPrizes(tournament, connection);
             }
         }
-
-        private void SaveTournament ( TournamentModel model, IDbConnection connection )
-        {
-            DynamicParameters p = new DynamicParameters();
-            p.Add("@TournamentName", model.TournamentName);
-            p.Add("@EntryFee", model.EntryFee);
-            p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
-
-            connection.Execute("dbo.spTournaments_Insert", p, commandType: CommandType.StoredProcedure);
-
-            model.Id = p.Get<int>("@Id");
-        }
-
-        private void SaveTournamentEntries(TournamentModel model, IDbConnection connection)
-        {
-            foreach (TeamModel team in model.EnteredTeams)
-            {
-                DynamicParameters p = new DynamicParameters();
-                p.Add("@TournamentID", model.Id);
-                p.Add("@TeamID", team.Id);
-
-                connection.Execute("dbo.spTournamentEntries_Insert", p, commandType: CommandType.StoredProcedure);
-            }
-        }
-
-        private void SaveTournamentPrizes(TournamentModel model, IDbConnection connection)
-        {
-            foreach (PrizeModel prize in model.Prizes)
-            {
-                DynamicParameters p = new DynamicParameters();
-                p.Add("@TournamentID", model.Id);
-                p.Add("@PrizeID", prize.Id);
-
-                connection.Execute("dbo.spTournamentPrizes_Insert", p, commandType: CommandType.StoredProcedure);
-            }
-        }
-
+        
         /// <summary>
-        /// Get all Persons from a DB
+        /// Get all persons
         /// </summary>
         /// <returns>List of persons</returns>
         public List<PersonModel> GetAllPersons()
@@ -134,6 +104,11 @@ namespace TrackerLib.Connections
             return output;
         }
 
+        /// <summary>
+        /// Save a team to DB
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns></returns>
         public TeamModel CreateTeam(TeamModel model)
         {
             using ( IDbConnection connection = new SqlConnection( GlobalConfig.CnnString(TournamentDb) ) )
@@ -162,6 +137,10 @@ namespace TrackerLib.Connections
             }
         }
 
+        /// <summary>
+        /// Get all teams
+        /// </summary>
+        /// <returns>List of teams</returns>
         public List<TeamModel> GetAllTeams()
         {
             List<TeamModel> output;

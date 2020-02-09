@@ -92,21 +92,22 @@ namespace TrackerLib
         /// <param name="rounds">Total number of rounds</param>
         private static void CreateOtherRounds (TournamentModel tournament, int rounds)
         {
-            // Задаем значение следующего раунда после первого, то есть 2 раунд
+            // Set next number of round, is 2
             int round = 2;
-            // Предыдущим раундом(родительским раундом) указываем первый элемент в списке
-            // так как это единственный раунд, который имеется
+            
+            // Previous round is the first element in a list
+            // because it is the first round of a tournament
             List<MatchUpModel> previousRound = tournament.Rounds[0];
 
-            // модель игры(встречи играков), которая будет передана в список текущего раунда
+            // current match up will be added to the current list of matches of current round
             MatchUpModel currentMatchUp = new MatchUpModel();
 
-            // Список матчей в текущем раунде
+            // List of matches in the current round
             List<MatchUpModel> currRound = new List<MatchUpModel>();
 
             while (round <= rounds) 
             {
-                // Проходим по каждому матчу в предыдущем раунде
+                // Loop through each game in a prev round
                 foreach (MatchUpModel match in previousRound)
                 {
                     currentMatchUp.Entries.Add(new MatchupEntryModel{ ParentMatchUp = match });
