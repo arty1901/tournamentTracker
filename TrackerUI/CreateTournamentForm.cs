@@ -110,8 +110,6 @@ namespace TrackerUI
 
             decimal fee = decimal.Parse(entryFeeTextBox.Text);
 
-            // TODO - wire up match up
-
             TournamentModel tournament = new TournamentModel
             {
                 TournamentName = tournamentNameTextBox.Text,
@@ -119,6 +117,9 @@ namespace TrackerUI
                 EnteredTeams = selectedTeams,
                 Prizes = selectedPrizes
             };
+
+            // TODO - wire up match up
+            TournamentLogic.CreateRounds(tournament);
 
             GlobalConfig.Connection.CreateTournament(tournament);
         }
