@@ -6,17 +6,11 @@ using System.Linq;
 
 namespace TrackerLib.Connections
 {
-    public class TextConntector : IDataConnection
+    public class TextConnector : IDataConnection
     {
-        private const string PrizesFile = "PrizeModels.csv";
-        private const string PersonsFile = "PersonModels.csv";
-        private const string TeamFile = "TeamModel.csv";
-        private const string TournamentFile = "TournamentModel.csv";
-
-
         public PrizeModel CreatePrize(PrizeModel model)
         {
-            List<PrizeModel> prizes = PrizesFile.FullFileName().LoadFile().ConverToPrizeModels();
+            List<PrizeModel> prizes = GlobalConfig.PrizesFile.FullFileName().LoadFile().ConvertToPrizeModels();
 
             int currentId = 1;
             if (prizes.Count > 0)
@@ -27,14 +21,14 @@ namespace TrackerLib.Connections
 
             prizes.Add(model);
 
-            prizes.SaveToPrizeFile(PrizesFile);
+            prizes.SaveToPrizeFile();
 
             return model;
         }
 
         public PersonModel CreatePerson(PersonModel model)
         {
-            List<PersonModel> persons = PersonsFile.FullFileName().LoadFile().ConvertToPersonModels();
+            List<PersonModel> persons = GlobalConfig.PersonsFile.FullFileName().LoadFile().ConvertToPersonModels();
 
             int currentId = 1;
             if (persons.Count > 0)
@@ -44,14 +38,14 @@ namespace TrackerLib.Connections
 
             model.Id = currentId;
             persons.Add(model);
-            persons.SaveToPersonFile(PersonsFile);
+            persons.SaveToPersonFile(GlobalConfig.PersonsFile);
 
             return model;
         }
 
         public TeamModel CreateTeam(TeamModel model)
         {
-            List<TeamModel> teamList = TeamFile.FullFileName().LoadFile().ConvertToTeamModels(TeamFile);
+            List<TeamModel> teamList = GlobalConfig.TeamFile.FullFileName().LoadFile().ConvertToTeamModels();
 
             int currentId = 1;
             if (teamList.Count > 0)
@@ -61,38 +55,40 @@ namespace TrackerLib.Connections
 
             model.Id = currentId;
             teamList.Add(model);
-            teamList.SaveToTeamFile(TeamFile);
+            teamList.SaveToTeamFile(GlobalConfig.TeamFile);
 
             return model;
         }
 
         public void CreateTournament(TournamentModel model)
         {
-            List<TournamentModel> tournament = TournamentFile.FullFileName().LoadFile().ConvertTournamentModel(TeamFile, PrizesFile, PersonsFile);
+            List<TournamentModel> tournament = GlobalConfig.TournamentFile.FullFileName().LoadFile().ConvertToTournamentModel();
 
             int currentId = tournament.Count > 0 ? tournament.OrderByDescending(x => x.Id).First().Id + 1 : 1;
 
             model.Id = currentId;
 
+            model.SaveRoundsToFile();
+
             tournament.Add(model);
 
-            tournament.SaveToTournamentFile(TournamentFile);
+            tournament.SaveToTournamentFile(GlobalConfig.TournamentFile.FullFileName());
 
         }
 
         public List<TeamModel> GetAllTeams()
         {
-            return TeamFile.FullFileName().LoadFile().ConvertToTeamModels(PersonsFile);
+            return GlobalConfig.TeamFile.FullFileName().LoadFile().ConvertToTeamModels();
         }
 
         public List<PrizeModel> GetAllPrizes()
         {
-            return PrizesFile.FullFileName().LoadFile().ConverToPrizeModels();
+            return GlobalConfig.PrizesFile.FullFileName().LoadFile().ConvertToPrizeModels();
         }
 
         public List<PersonModel> GetAllPersons()
         {
-            return PersonsFile.FullFileName().LoadFile().ConvertToPersonModels();
+            return GlobalConfig.PersonsFile.FullFileName().LoadFile().ConvertToPersonModels();
         }
     }
 }

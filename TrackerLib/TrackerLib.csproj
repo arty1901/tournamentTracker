@@ -49,7 +49,7 @@
     <Compile Include="Connections\SqlConnector.cs" />
     <Compile Include="Connections\SqlConnectorProcessor.cs" />
     <Compile Include="Connections\TextConnectorProcessor.cs" />
-    <Compile Include="Connections\TextConntector.cs" />
+    <Compile Include="Connections\TextConnector.cs" />
     <Compile Include="Enums.cs" />
     <Compile Include="GlobalConfig.cs" />
     <Compile Include="IDataConnection.cs" />

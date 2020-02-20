@@ -11,6 +11,13 @@ namespace TrackerLib
     {
         public static IDataConnection Connection { get; private set; }
 
+        public const string PrizesFile = "PrizeModels.csv";
+        public const string PersonsFile = "PersonModels.csv";
+        public const string TeamFile = "TeamModel.csv";
+        public const string TournamentFile = "TournamentModel.csv";
+        public const string MatchUpFile = "MatchUpModel.csv";
+        public const string MatchUpEntryFile = "MatchUpEntryModel.csv";
+
         /// <summary>
         /// Initiation of connection
         /// </summary>
@@ -24,7 +31,7 @@ namespace TrackerLib
                     Connection = sql;
                     break;
                 case DataBaseType.TextFile:
-                    TextConntector text = new TextConntector();
+                    TextConnector text = new TextConnector();
                     Connection = text;
                     break;
                 default:
