@@ -14,5 +14,6 @@ namespace TrackerLib
         List<PersonModel> GetAllPersons();
         List<TeamModel> GetAllTeams();
         List<PrizeModel> GetAllPrizes();
+        List<TournamentModel> GetAllTournaments();
     }
 }

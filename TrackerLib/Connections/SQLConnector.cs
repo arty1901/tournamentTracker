@@ -89,6 +89,18 @@ namespace TrackerLib.Connections
                 SqlConnectorProcessor.SaveTournamentRounds(tournament, connection);
             }
         }
+
+        public List<TournamentModel> GetAllTournaments()
+        {
+            List<TournamentModel> output;
+
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(TournamentDb)))
+            {
+                output = connection.Query<TournamentModel>("dbo.spTournaments_GetAll").AsList();
+            }
+
+            return output;
+        }
         
         /// <summary>
         /// Get all persons

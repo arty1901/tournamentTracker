@@ -3,19 +3,23 @@ using System.Collections.Generic;
 using System.Windows.Forms;
 using TrackerLib;
 using TrackerLib.Models;
-using TrackerUI.Helper_Methods;
+using TrackerUI.FormInterfaces;
 
 namespace TrackerUI
 {
-    public partial class CreateTournamentForm : AbstractCommon, IPrizeRequester, ITeamRequester
+    public partial class CreateTournamentForm : Form, IPrizeRequester, ITeamRequester
     {
-        private List<TeamModel> availableTeams = GlobalConfig.Connection.GetAllTeams();
-        private List<TeamModel> selectedTeams = new List<TeamModel>();
-        private List<PrizeModel> selectedPrizes = new List<PrizeModel>();
+        private List<TeamModel> _availableTeams = GlobalConfig.Connection.GetAllTeams();
+        private List<TeamModel> _selectedTeams = new List<TeamModel>();
+        private List<PrizeModel> _selectedPrizes = new List<PrizeModel>();
 
-        public CreateTournamentForm()
+        private readonly ITournamentRequester requester;
+
+        public CreateTournamentForm(ITournamentRequester form)
         {
             InitializeComponent();
+
+            this.requester = form;
         }
 
         private void CreateTournamentForm_Load(object sender, EventArgs e)
@@ -23,19 +27,19 @@ namespace TrackerUI
             WiredUpLists();
         }
 
-        public override void WiredUpLists()
+        public void WiredUpLists()
         {
             selectTeamDropDown.DataSource = null;
             tournamentTeamsListBox.DataSource = null;
             prizeListBox.DataSource = null;
 
-            selectTeamDropDown.DataSource = availableTeams;
+            selectTeamDropDown.DataSource = _availableTeams;
             selectTeamDropDown.DisplayMember = "teamname";
 
-            tournamentTeamsListBox.DataSource = selectedTeams;
+            tournamentTeamsListBox.DataSource = _selectedTeams;
             tournamentTeamsListBox.DisplayMember = "teamname";
 
-            prizeListBox.DataSource = selectedPrizes;
+            prizeListBox.DataSource = _selectedPrizes;
             prizeListBox.DisplayMember = "placename";
         }
 
@@ -45,8 +49,8 @@ namespace TrackerUI
 
             if (t != null)
             {
-                availableTeams.Remove(t);
-                selectedTeams.Add(t);
+                _availableTeams.Remove(t);
+                _selectedTeams.Add(t);
             }
 
             WiredUpLists();
@@ -58,8 +62,8 @@ namespace TrackerUI
 
             if (team == null) return;
 
-            availableTeams.Add(team);
-            selectedTeams.Remove(team);
+            _availableTeams.Add(team);
+            _selectedTeams.Remove(team);
 
             WiredUpLists();
         }
@@ -70,7 +74,7 @@ namespace TrackerUI
 
             if (prize == null) return;
 
-            selectedPrizes.Remove(prize);
+            _selectedPrizes.Remove(prize);
 
             WiredUpLists();
         }
@@ -86,13 +90,13 @@ namespace TrackerUI
         {
             // get back from the form
             //take the prizemodel and put it into out list of selected prizes
-            selectedPrizes.Add(prizeModel);
+            _selectedPrizes.Add(prizeModel);
             WiredUpLists();
         }
 
         public void TeamComplete(TeamModel team)
         {
-            selectedTeams.Add(team);
+            _selectedTeams.Add(team);
             WiredUpLists();
         }
 
@@ -104,9 +108,7 @@ namespace TrackerUI
 
         private void createTournamentButton_Click(object sender, EventArgs e)
         {
-            // TODO - Wired up click event with save to DB\file action
-            // add team list and prize list to Tournament model
-            if (selectedPrizes.Count == 0 || selectedTeams.Count == 0) return;
+            if (_selectedPrizes.Count == 0 || _selectedTeams.Count == 0) return;
 
             decimal fee = decimal.Parse(entryFeeTextBox.Text);
 
@@ -114,14 +116,18 @@ namespace TrackerUI
             {
                 TournamentName = tournamentNameTextBox.Text,
                 EntryFee = fee,
-                EnteredTeams = selectedTeams,
-                Prizes = selectedPrizes
+                EnteredTeams = _selectedTeams,
+                Prizes = _selectedPrizes
             };
 
             // TODO - wire up match up
             TournamentLogic.CreateRounds(tournament);
 
             GlobalConfig.Connection.CreateTournament(tournament);
+
+            requester.TournamentComplete(tournament);
+
+            this.Close();
         }
     }
 }

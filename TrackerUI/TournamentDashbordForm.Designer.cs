@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.tournamentDashboardLabel = new System.Windows.Forms.Label();
-            this.selectTeamMemberDropDown = new System.Windows.Forms.ComboBox();
+            this.selectTournamentDropDown = new System.Windows.Forms.ComboBox();
             this.loadExistingTournamentLabel = new System.Windows.Forms.Label();
             this.LoadTournamentButton = new System.Windows.Forms.Button();
             this.createTournamentButton = new System.Windows.Forms.Button();
@@ -46,13 +46,13 @@
             this.tournamentDashboardLabel.TabIndex = 12;
             this.tournamentDashboardLabel.Text = "Tournament Dashboard";
             // 
-            // selectTeamMemberDropDown
+            // selectTournamentDropDown
             // 
-            this.selectTeamMemberDropDown.FormattingEnabled = true;
-            this.selectTeamMemberDropDown.Location = new System.Drawing.Point(130, 205);
-            this.selectTeamMemberDropDown.Name = "selectTeamMemberDropDown";
-            this.selectTeamMemberDropDown.Size = new System.Drawing.Size(336, 38);
-            this.selectTeamMemberDropDown.TabIndex = 18;
+            this.selectTournamentDropDown.FormattingEnabled = true;
+            this.selectTournamentDropDown.Location = new System.Drawing.Point(130, 205);
+            this.selectTournamentDropDown.Name = "selectTournamentDropDown";
+            this.selectTournamentDropDown.Size = new System.Drawing.Size(336, 38);
+            this.selectTournamentDropDown.TabIndex = 18;
             // 
             // loadExistingTournamentLabel
             // 
@@ -75,6 +75,7 @@
             this.LoadTournamentButton.TabIndex = 21;
             this.LoadTournamentButton.Text = "Load Tournament";
             this.LoadTournamentButton.UseVisualStyleBackColor = true;
+            this.LoadTournamentButton.Click += new System.EventHandler(this.LoadTournamentButton_Click);
             // 
             // createTournamentButton
             // 
@@ -86,6 +87,7 @@
             this.createTournamentButton.TabIndex = 21;
             this.createTournamentButton.Text = "Create Tournament";
             this.createTournamentButton.UseVisualStyleBackColor = true;
+            this.createTournamentButton.Click += new System.EventHandler(this.createTournamentButton_Click);
             // 
             // TournamentDashboardForm
             // 
@@ -95,7 +97,7 @@
             this.ClientSize = new System.Drawing.Size(614, 538);
             this.Controls.Add(this.createTournamentButton);
             this.Controls.Add(this.LoadTournamentButton);
-            this.Controls.Add(this.selectTeamMemberDropDown);
+            this.Controls.Add(this.selectTournamentDropDown);
             this.Controls.Add(this.loadExistingTournamentLabel);
             this.Controls.Add(this.tournamentDashboardLabel);
             this.Font = new System.Drawing.Font("Segoe UI", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -110,7 +112,7 @@
         #endregion
 
         private System.Windows.Forms.Label tournamentDashboardLabel;
-        private System.Windows.Forms.ComboBox selectTeamMemberDropDown;
+        private System.Windows.Forms.ComboBox selectTournamentDropDown;
         private System.Windows.Forms.Label loadExistingTournamentLabel;
         private System.Windows.Forms.Button LoadTournamentButton;
         private System.Windows.Forms.Button createTournamentButton;

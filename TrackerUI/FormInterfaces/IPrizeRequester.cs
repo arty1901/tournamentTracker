@@ -5,10 +5,10 @@ using System.Text;
 using System.Threading.Tasks;
 using TrackerLib.Models;
 
-namespace TrackerUI
+namespace TrackerUI.FormInterfaces
 {
-    public interface ITeamRequester
+    public interface IPrizeRequester
     {
-        void TeamComplete(TeamModel team);
+        void PrizeComplete(PrizeModel prizeModel);
     }
 }

@@ -73,7 +73,6 @@ namespace TrackerLib.Connections
             tournament.Add(model);
 
             tournament.SaveToTournamentFile(GlobalConfig.TournamentFile.FullFileName());
-
         }
 
         public List<TeamModel> GetAllTeams()
@@ -84,6 +83,11 @@ namespace TrackerLib.Connections
         public List<PrizeModel> GetAllPrizes()
         {
             return GlobalConfig.PrizesFile.FullFileName().LoadFile().ConvertToPrizeModels();
+        }
+
+        public List<TournamentModel> GetAllTournaments()
+        {
+            throw new NotImplementedException();
         }
 
         public List<PersonModel> GetAllPersons()
