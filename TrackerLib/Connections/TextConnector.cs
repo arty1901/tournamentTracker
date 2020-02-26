@@ -87,7 +87,7 @@ namespace TrackerLib.Connections
 
         public List<TournamentModel> GetAllTournaments()
         {
-            throw new NotImplementedException();
+            return GlobalConfig.TournamentFile.FullFileName().LoadFile().ConvertToTournamentModel();
         }
 
         public List<PersonModel> GetAllPersons()

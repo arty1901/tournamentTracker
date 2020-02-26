@@ -70,7 +70,6 @@
     <Compile Include="Helper Methods\Helper.cs" />
     <Compile Include="FormInterfaces\IPrizeRequester.cs" />
     <Compile Include="FormInterfaces\ITeamRequester.cs" />
-    <Compile Include="FormInterfaces\ITournamentRequester.cs" />
     <Compile Include="TournamentDashbordForm.cs">
       <SubType>Form</SubType>
     </Compile>

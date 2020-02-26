@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Data;
 using TrackerLib.Models;
 using System.Data.SqlClient;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace TrackerLib.Connections
 {
@@ -62,10 +64,8 @@ namespace TrackerLib.Connections
                 p.Add("@Phone", model.Phone);
                 p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-                // Надо передать имя_прецедуры, данные, тип команды, в данном случае это storedprocedure
                 connection.Execute("dbo.spPerson_Insert", p, commandType: CommandType.StoredProcedure);
 
-                //получить созданный id из базы и сохранить в модель
                 model.Id = p.Get<int>("@Id");
 
                 return model;
@@ -97,6 +97,75 @@ namespace TrackerLib.Connections
             using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(TournamentDb)))
             {
                 output = connection.Query<TournamentModel>("dbo.spTournaments_GetAll").AsList();
+
+                foreach (TournamentModel t in output)
+                {
+                    DynamicParameters p = new DynamicParameters();
+                    p.Add("@TournamentId", t.Id);
+
+                    // Get prizes by tournament
+                    t.Prizes = connection.Query<PrizeModel>("dbo.spPrizes_GetByTournament", p, commandType: CommandType.StoredProcedure).AsList();
+
+                    // Get teams 
+                    t.EnteredTeams = connection.Query<TeamModel>("dbo.spTeams_GetByTournament", p, commandType: CommandType.StoredProcedure).AsList();
+
+                    foreach (TeamModel team in t.EnteredTeams)
+                    {
+                        p = new DynamicParameters();
+                        p.Add("@TeamId", team.Id);
+
+                        team.TeamMembers = connection.Query<PersonModel>("dbo.spTeamMembers_GetByTeam", p, commandType: CommandType.StoredProcedure).AsList();
+                    }
+
+                    // Get rounds
+                    p.Add("@TournamentId", t.Id);
+
+                    // Fetch all match ups by tournament Id
+                    List<MatchUpModel> matchUps =
+                        connection.Query<MatchUpModel>("dbo.spMatchups_GetByTournament", p, commandType: CommandType.StoredProcedure).AsList();
+
+                    foreach (MatchUpModel m in matchUps)
+                    {
+                        p = new DynamicParameters();
+                        p.Add("@MatchUpId", m.Id);
+
+                        m.Entries = connection.Query<MatchupEntryModel>("dbo.spMatchUpEntries_GetByMatchUp", p,
+                            commandType: CommandType.StoredProcedure).AsList();
+
+                        // Populate all entry (2 models)
+                        List<TeamModel> allTeams = GetAllTeams();
+
+                        if (m.WinnerId > 0)
+                            m.Winner =  allTeams.First(x => x.Id == m.WinnerId);
+
+                        foreach (MatchupEntryModel entry in m.Entries)
+                        {
+                            if (entry.TeamCompetingId > 0)
+                                entry.TeamCompeting = allTeams.First(x => x.Id == entry.TeamCompetingId);
+
+                            if (entry.ParentMatchUpId > 0)
+                                entry.ParentMatchUp = matchUps.First(x => x.Id == entry.ParentMatchUpId);
+                        }
+                    }
+
+                    List<MatchUpModel> currentListRound = new List<MatchUpModel>();
+                    int currentRound = 1;
+
+                    foreach (var matchup in matchUps)
+                    {
+                        if (currentRound < matchup.MatchUpRound)
+                        {
+                            t.Rounds.Add(currentListRound);
+                            currentListRound = new List<MatchUpModel>();
+                            currentRound++;
+                        }
+
+                        currentListRound.Add(matchup);
+                    }
+
+                    t.Rounds.Add(currentListRound);
+
+                }
             }
 
             return output;
@@ -131,10 +200,8 @@ namespace TrackerLib.Connections
                 p.Add("@TeamName", model.TeamName);
                 p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
-                // Надо передать имя_прецедуры, данные, тип команды, в данном случае это storedprocedure
                 connection.Execute("dbo.spTeams_Insert", p, commandType: CommandType.StoredProcedure);
 
-                //получить созданный id из базы и сохранить в модель
                 model.Id = p.Get<int>("@Id");
 
                 foreach (PersonModel person in model.TeamMembers)
@@ -143,7 +210,6 @@ namespace TrackerLib.Connections
                     p.Add("@TeamID", model.Id);
                     p.Add("@PersonID", person.Id);
 
-                    // Надо передать имя_прецедуры, данные, тип команды, в данном случае это storedprocedure
                     connection.Execute("dbo.spTeamMembers_Insert", p, commandType: CommandType.StoredProcedure);
                 }
 

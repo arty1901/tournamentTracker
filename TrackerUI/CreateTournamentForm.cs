@@ -13,13 +13,9 @@ namespace TrackerUI
         private List<TeamModel> _selectedTeams = new List<TeamModel>();
         private List<PrizeModel> _selectedPrizes = new List<PrizeModel>();
 
-        private readonly ITournamentRequester requester;
-
         public CreateTournamentForm(ITournamentRequester form)
         {
             InitializeComponent();
-
-            this.requester = form;
         }
 
         private void CreateTournamentForm_Load(object sender, EventArgs e)
@@ -124,8 +120,6 @@ namespace TrackerUI
             TournamentLogic.CreateRounds(tournament);
 
             GlobalConfig.Connection.CreateTournament(tournament);
-
-            requester.TournamentComplete(tournament);
 
             this.Close();
         }
