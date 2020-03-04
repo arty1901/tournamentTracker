@@ -7,9 +7,9 @@ namespace TrackerLib
 {
     public interface IDataConnection
     {
-        PrizeModel CreatePrize(PrizeModel model);
-        PersonModel CreatePerson(PersonModel model);
-        TeamModel CreateTeam(TeamModel team);
+        void CreatePrize(PrizeModel model);
+        void CreatePerson(PersonModel model);
+        void CreateTeam(TeamModel team);
         void CreateTournament(TournamentModel tournament);
         void UpdateMatchUp(MatchUpModel model);
         List<PersonModel> GetAllPersons();

@@ -8,56 +8,37 @@ namespace TrackerLib.Connections
 {
     public class TextConnector : IDataConnection
     {
-        public PrizeModel CreatePrize(PrizeModel model)
+        public void CreatePrize(PrizeModel model)
         {
             List<PrizeModel> prizes = GlobalConfig.PrizesFile.FullFileName().LoadFile().ConvertToPrizeModels();
 
-            int currentId = 1;
-            if (prizes.Count > 0)
-            {
-                currentId = prizes.OrderByDescending(x => x.Id).First().Id + 1;
-            }
+            int currentId = prizes.Count > 0 ? prizes.OrderByDescending(x => x.Id).First().Id + 1 : 1;
+
             model.Id = currentId;
-
             prizes.Add(model);
-
             prizes.SaveToPrizeFile();
-
-            return model;
         }
 
-        public PersonModel CreatePerson(PersonModel model)
+        public void CreatePerson(PersonModel model)
         {
             List<PersonModel> persons = GlobalConfig.PersonsFile.FullFileName().LoadFile().ConvertToPersonModels();
 
-            int currentId = 1;
-            if (persons.Count > 0)
-            {
-                currentId = persons.OrderByDescending(x => x.Id).First().Id + 1;
-            }
+            int currentId = persons.Count > 0 ? persons.OrderByDescending(x => x.Id).First().Id + 1 : 1;
 
             model.Id = currentId;
             persons.Add(model);
             persons.SaveToPersonFile(GlobalConfig.PersonsFile);
-
-            return model;
         }
 
-        public TeamModel CreateTeam(TeamModel model)
+        public void CreateTeam(TeamModel model)
         {
             List<TeamModel> teamList = GlobalConfig.TeamFile.FullFileName().LoadFile().ConvertToTeamModels();
 
-            int currentId = 1;
-            if (teamList.Count > 0)
-            {
-                currentId = teamList.OrderByDescending(x => x.Id).First().Id + 1;
-            }
+            int currentId = teamList.Count > 0 ? teamList.OrderByDescending(x => x.Id).First().Id + 1 : 1;
 
             model.Id = currentId;
             teamList.Add(model);
             teamList.SaveToTeamFile(GlobalConfig.TeamFile);
-
-            return model;
         }
 
         public void CreateTournament(TournamentModel model)
