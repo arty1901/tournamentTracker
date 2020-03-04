@@ -11,7 +11,7 @@ namespace TrackerUI
     //todo - create GetAllTournaments for text connection
     //todo - crete loadTournament event handler
 
-    public partial class TournamentDashboardForm : Form, ITournamentRequester
+    public partial class TournamentDashboardForm : Form
     {
         private readonly List<TournamentModel> _availableTournamentModels = GlobalConfig.Connection.GetAllTournaments();
 
@@ -58,7 +58,7 @@ namespace TrackerUI
         /// <param name="e"></param>
         private void createTournamentButton_Click(object sender, EventArgs e)
         {
-            CreateTournamentForm form  = new CreateTournamentForm(this);
+            CreateTournamentForm form  = new CreateTournamentForm();
             form.Show();
         }
 

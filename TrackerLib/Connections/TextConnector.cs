@@ -75,6 +75,11 @@ namespace TrackerLib.Connections
             tournament.SaveToTournamentFile(GlobalConfig.TournamentFile.FullFileName());
         }
 
+        public void UpdateMatchUp(MatchUpModel model)
+        {
+            model.UpdateMatchUpToFile();
+        }
+
         public List<TeamModel> GetAllTeams()
         {
             return GlobalConfig.TeamFile.FullFileName().LoadFile().ConvertToTeamModels();

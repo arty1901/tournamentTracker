@@ -29,7 +29,7 @@ namespace TrackerLib.Connections
                 p.Add("@Id", 0, dbType: DbType.Int32, direction: ParameterDirection.Output);
 
                 connection.Execute("dbo.spPrizes_Insert", p, commandType: CommandType.StoredProcedure);
-                
+
                 model.Id = p.Get<int>("@Id");
 
                 return model;
@@ -90,6 +90,38 @@ namespace TrackerLib.Connections
             }
         }
 
+        public void UpdateMatchUp(MatchUpModel model)
+        {
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(TournamentDb)))
+            {
+                DynamicParameters p = new DynamicParameters();
+                if (model.Winner != null)
+                {
+                    p.Add("@Id", model.Id);
+                    p.Add("@WinnerId", model.Winner.Id);
+
+                    connection.Execute("dbo.spMatchUps_Update", p, commandType: CommandType.StoredProcedure);
+                }
+
+
+                // spMatchUpEntries_Update id, TeamCompetingId, Score
+                foreach (MatchupEntryModel me in model.Entries)
+                {
+                    if (me.TeamCompeting != null)
+                    {
+                        p = new DynamicParameters();
+
+                        p.Add("@Id", me.Id);
+                        p.Add("@TeamCompetingId", me.TeamCompeting.Id);
+                        p.Add("@Score", me.Score);
+
+                        connection.Execute("dbo.spMatchUpEntries_Update", p, commandType: CommandType.StoredProcedure);
+                    }
+
+                }
+            }
+        }
+
         public List<TournamentModel> GetAllTournaments()
         {
             List<TournamentModel> output;
@@ -136,7 +168,7 @@ namespace TrackerLib.Connections
                         List<TeamModel> allTeams = GetAllTeams();
 
                         if (m.WinnerId > 0)
-                            m.Winner =  allTeams.First(x => x.Id == m.WinnerId);
+                            m.Winner = allTeams.First(x => x.Id == m.WinnerId);
 
                         foreach (MatchupEntryModel entry in m.Entries)
                         {
@@ -170,7 +202,7 @@ namespace TrackerLib.Connections
 
             return output;
         }
-        
+
         /// <summary>
         /// Get all persons
         /// </summary>
@@ -194,7 +226,7 @@ namespace TrackerLib.Connections
         /// <returns></returns>
         public TeamModel CreateTeam(TeamModel model)
         {
-            using ( IDbConnection connection = new SqlConnection( GlobalConfig.CnnString(TournamentDb) ) )
+            using (IDbConnection connection = new SqlConnection(GlobalConfig.CnnString(TournamentDb)))
             {
                 DynamicParameters p = new DynamicParameters();
                 p.Add("@TeamName", model.TeamName);

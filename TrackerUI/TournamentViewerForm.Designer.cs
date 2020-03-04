@@ -42,6 +42,7 @@
             this.teamTwoScoreValueTextBox = new System.Windows.Forms.TextBox();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
+            this.scoreButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -85,19 +86,20 @@
             this.roundDropDown.Name = "roundDropDown";
             this.roundDropDown.Size = new System.Drawing.Size(165, 33);
             this.roundDropDown.TabIndex = 3;
-            this.roundDropDown.SelectedValueChanged += new System.EventHandler(this.roundDropDown_SelectedValueChanged);
+            this.roundDropDown.SelectedIndexChanged += new System.EventHandler(this.roundDropDown_SelectedIndexChanged);
             // 
             // unplayedOnlyCheckBox
             // 
             this.unplayedOnlyCheckBox.AutoSize = true;
             this.unplayedOnlyCheckBox.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.unplayedOnlyCheckBox.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
-            this.unplayedOnlyCheckBox.Location = new System.Drawing.Point(119, 128);
+            this.unplayedOnlyCheckBox.Location = new System.Drawing.Point(119, 123);
             this.unplayedOnlyCheckBox.Name = "unplayedOnlyCheckBox";
             this.unplayedOnlyCheckBox.Size = new System.Drawing.Size(165, 34);
             this.unplayedOnlyCheckBox.TabIndex = 4;
             this.unplayedOnlyCheckBox.Text = "Unplayed Only";
             this.unplayedOnlyCheckBox.UseVisualStyleBackColor = true;
+            this.unplayedOnlyCheckBox.CheckedChanged += new System.EventHandler(this.unplayedOnlyCheckBox_CheckedChanged);
             // 
             // matchupListBox
             // 
@@ -108,6 +110,7 @@
             this.matchupListBox.Name = "matchupListBox";
             this.matchupListBox.Size = new System.Drawing.Size(254, 242);
             this.matchupListBox.TabIndex = 5;
+            this.matchupListBox.SelectedIndexChanged += new System.EventHandler(this.matchupListBox_SelectedIndexChanged);
             // 
             // teamOneNameLabel
             // 
@@ -169,12 +172,25 @@
             this.teamTwoScoreValueTextBox.Size = new System.Drawing.Size(100, 33);
             this.teamTwoScoreValueTextBox.TabIndex = 8;
             // 
+            // scoreButton
+            // 
+            this.scoreButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.scoreButton.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(153)))), ((int)(((byte)(255)))));
+            this.scoreButton.Location = new System.Drawing.Point(522, 256);
+            this.scoreButton.Name = "scoreButton";
+            this.scoreButton.Size = new System.Drawing.Size(92, 39);
+            this.scoreButton.TabIndex = 15;
+            this.scoreButton.Text = "Score";
+            this.scoreButton.UseVisualStyleBackColor = true;
+            this.scoreButton.Click += new System.EventHandler(this.scoreButton_Click);
+            // 
             // TournamentViewerForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 30F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(709, 502);
+            this.Controls.Add(this.scoreButton);
             this.Controls.Add(this.teamTwoScoreValueTextBox);
             this.Controls.Add(this.teamOneScoreValueTextBox);
             this.Controls.Add(this.teamTwoScoreLabel);
@@ -212,6 +228,7 @@
         private System.Windows.Forms.TextBox teamTwoScoreValueTextBox;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.ComponentModel.BackgroundWorker backgroundWorker2;
+        private System.Windows.Forms.Button scoreButton;
     }
 }
 
