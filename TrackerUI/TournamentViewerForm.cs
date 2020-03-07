@@ -133,7 +133,6 @@ namespace TrackerUI
                     }
                 }
 
-
                 if (i == 1)
                 {
                     if (m.Entries[1].TeamCompeting != null)
@@ -160,6 +159,12 @@ namespace TrackerUI
         {
             MatchUpModel m = (MatchUpModel) matchupListBox.SelectedItem;
             double teamOneScore = 0, teamTwoScore = 0;
+
+            if (!IsValidData())
+            {
+                MessageBox.Show("You need to enter valid data before we can score this match up.");
+                return;
+            }
 
             for (int i = 0; i < m.Entries.Count; i++)
             {
@@ -199,35 +204,43 @@ namespace TrackerUI
                 }
             }
 
-            if (teamOneScore > teamTwoScore)
-                m.Winner = m.Entries[0].TeamCompeting;
-            else if (teamTwoScore > teamOneScore)
-                m.Winner = m.Entries[1].TeamCompeting;
-            else
-                Helper.ShowMessage("I do not handle tie game", false);
-
-            foreach (List<MatchUpModel> round in this._loadedTournament.Rounds)
+            try
             {
-                foreach (MatchUpModel rm in round)
-                {
-                    foreach (MatchupEntryModel entry in rm.Entries)
-                    {
-                        if (entry.ParentMatchUp != null)
-                        {
-                            if (entry.ParentMatchUp.Id == m.Id)
-                            {
-                                entry.TeamCompeting = m.Winner;
-                                GlobalConfig.Connection.UpdateMatchUp(rm);
-                            }
-                        }
-                        
-                    }
-                }
+                TournamentLogic.UpdateTournamentResults(this._loadedTournament);
+            }
+            catch (Exception exception)
+            {
+                MessageBox.Show($@"The application had the following error: {exception.Message}");
+                return;
             }
 
             this.LoadMatchUps((int)roundDropDown.SelectedItem);
+        }
 
-            GlobalConfig.Connection.UpdateMatchUp(m);
+        private bool IsValidData()
+        {
+            bool output = true;
+
+            double scoreOne = 0;
+            double scoreTwo = 0;
+
+            bool scoreOneValid = double.TryParse(teamOneScoreValueTextBox.Text, out scoreOne);
+            bool scoreTwoValid = double.TryParse(teamOneScoreValueTextBox.Text, out scoreTwo);
+
+            if (!scoreTwoValid || !scoreOneValid)
+            {
+                output = false;
+            }
+            else if (scoreOne == 0 && scoreTwo == 0)
+            {
+                output = false;
+            }
+            else if (scoreOne == scoreTwo)
+            {
+                output = false;
+            }
+
+            return output;
         }
     }
 }

@@ -1,27 +1,105 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Reflection;
+using System.Windows.Forms;
 using TrackerLib.Models;
 
 namespace TrackerLib
 {
     public static class TournamentLogic
     {
-        // order out list randomly of teams
-        // Check if it is big enough  - if not, add in byes
-        // create a first round of match ups
-        // create every round after that
-
         public static void CreateRounds(TournamentModel model)
         {
-            List<TeamModel> randomizedTeams = RandomizeTeamModel ( model.EnteredTeams );
+            List<TeamModel> randomizedTeams = RandomizeTeamModel(model.EnteredTeams);
             int rounds = FindNumberOfRounds(randomizedTeams.Count);
-            int byes = NumberOfByes ( rounds, randomizedTeams.Count );
+            int byes = NumberOfByes(rounds, randomizedTeams.Count);
 
             model.Rounds.Add(CreateFirstRound(byes, randomizedTeams));
 
             CreateOtherRounds(model, rounds);
+        }
+
+        public static void UpdateTournamentResults(TournamentModel model)
+        {
+            List<MatchUpModel> toScore = new List<MatchUpModel>();
+
+            foreach (List<MatchUpModel> round in model.Rounds)
+            {
+                foreach (MatchUpModel rm in round)
+                {
+                    if (rm.Winner == null && (rm.Entries.Any(x => x.Score != 0) || rm.Entries.Count == 1))
+                    {
+                        toScore.Add(rm);
+                    }
+                }
+            }
+
+            GetWinnerInMatchUps(toScore);
+            AdvancedWinner(toScore, model);
+
+            toScore.ForEach(x => GlobalConfig.Connection.UpdateMatchUp(x));
+        }
+
+        private static void GetWinnerInMatchUps(List<MatchUpModel> models)
+        {
+            // grater or lesser
+            string scoreDirection = ConfigurationManager.AppSettings["winnerDetermination"];
+
+            foreach (MatchUpModel model in models)
+            {
+                if (model.Entries.Count == 1)
+                {
+                    model.Winner = model.Entries[0].TeamCompeting;
+                    continue;
+                }
+
+                // 0 means low score wins
+                if (scoreDirection == "0")
+                {
+                    if (model.Entries[0].Score < model.Entries[1].Score)
+                        model.Winner = model.Entries[0].TeamCompeting;
+                    else if (model.Entries[0].Score > model.Entries[1].Score)
+                        model.Winner = model.Entries[1].TeamCompeting;
+                    else
+                        throw new Exception("We do not allow ties in this application");
+                }
+                else
+                {
+                    if (model.Entries[0].Score > model.Entries[1].Score)
+                        model.Winner = model.Entries[1].TeamCompeting;
+                    else if (model.Entries[0].Score < model.Entries[1].Score)
+                        model.Winner = model.Entries[0].TeamCompeting;
+                    else
+                        throw new Exception("We do not allow ties in this application");
+                }
+            }
+        }
+
+        private static void AdvancedWinner(List<MatchUpModel> models, TournamentModel tournament)
+        {
+            foreach (MatchUpModel m in models)
+            {
+                foreach (List<MatchUpModel> round in tournament.Rounds)
+                {
+                    foreach (MatchUpModel rm in round)
+                    {
+                        foreach (MatchupEntryModel entry in rm.Entries)
+                        {
+                            if (entry.ParentMatchUp != null)
+                            {
+                                if (entry.ParentMatchUp.Id == m.Id)
+                                {
+                                    entry.TeamCompeting = m.Winner;
+                                    GlobalConfig.Connection.UpdateMatchUp(rm);
+                                }
+                            }
+
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -70,7 +148,7 @@ namespace TrackerLib
 
             foreach (var team in teams)
             {
-                current.Entries.Add( new MatchupEntryModel{ TeamCompeting = team } );
+                current.Entries.Add(new MatchupEntryModel { TeamCompeting = team });
 
                 if (numberOfByes > 0 || current.Entries.Count > 1)
                 {
@@ -90,11 +168,11 @@ namespace TrackerLib
         /// </summary>
         /// <param name="tournament"></param>
         /// <param name="rounds">Total number of rounds</param>
-        private static void CreateOtherRounds (TournamentModel tournament, int rounds)
+        private static void CreateOtherRounds(TournamentModel tournament, int rounds)
         {
             // Set next number of round, is 2
             int round = 2;
-            
+
             // Previous round is the first element in a list
             // because it is the first round of a tournament
             List<MatchUpModel> previousRound = tournament.Rounds[0];
@@ -105,12 +183,12 @@ namespace TrackerLib
             // List of matches in the current round
             List<MatchUpModel> currRound = new List<MatchUpModel>();
 
-            while (round <= rounds) 
+            while (round <= rounds)
             {
                 // Loop through each game in a prev round
                 foreach (MatchUpModel match in previousRound)
                 {
-                    currentMatchUp.Entries.Add(new MatchupEntryModel{ ParentMatchUp = match });
+                    currentMatchUp.Entries.Add(new MatchupEntryModel { ParentMatchUp = match });
 
                     if (currentMatchUp.Entries.Count > 1)
                     {

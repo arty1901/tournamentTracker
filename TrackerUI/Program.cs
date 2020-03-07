@@ -21,7 +21,7 @@ namespace TrackerUI
             // Init DB connections
             GlobalConfig.InitConnections(DataBaseType.Sql);
             
-            Application.Run(new TournamentDashboardForm());
+            Application.Run(new TournamentBracketViewer());
         }
     }
 }

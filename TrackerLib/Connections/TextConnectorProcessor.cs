@@ -503,11 +503,6 @@ namespace TrackerLib.Connections.TextHelpers
             return output.Substring(0, output.Length - 1);
         }
 
-        /// <summary>
-        /// Convert a list of person model to a pipe split string
-        /// </summary>
-        /// <param name="list"></param>
-        /// <returns></returns>
         private static string ConvertPeopleListToString(List<PersonModel> list)
         {
             if (list.Count == 0) return "";

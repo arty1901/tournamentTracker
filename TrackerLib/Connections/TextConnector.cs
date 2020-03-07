@@ -54,6 +54,8 @@ namespace TrackerLib.Connections
             tournament.Add(model);
 
             tournament.SaveToTournamentFile(GlobalConfig.TournamentFile.FullFileName());
+
+            TournamentLogic.UpdateTournamentResults(model);
         }
 
         public void UpdateMatchUp(MatchUpModel model)

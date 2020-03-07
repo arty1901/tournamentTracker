@@ -116,11 +116,12 @@ namespace TrackerUI
                 Prizes = _selectedPrizes
             };
 
-            // TODO - wire up match up
             TournamentLogic.CreateRounds(tournament);
 
             GlobalConfig.Connection.CreateTournament(tournament);
 
+            TournamentViewerForm viewerForm = new TournamentViewerForm(tournament);
+            viewerForm.Show();
             this.Close();
         }
     }

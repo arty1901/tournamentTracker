@@ -83,6 +83,8 @@ namespace TrackerLib.Connections
                 SqlConnectorProcessor.SaveTournamentPrizes(tournament, connection);
 
                 SqlConnectorProcessor.SaveTournamentRounds(tournament, connection);
+
+                TournamentLogic.UpdateTournamentResults(tournament);
             }
         }
 

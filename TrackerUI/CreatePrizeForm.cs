@@ -33,7 +33,7 @@ namespace TrackerUI
                     prizeAmountTextBox.Text,
                     prizePercentangeTextBox.Text);
 
-                model = GlobalConfig.Connection.CreatePrize(model);
+                GlobalConfig.Connection.CreatePrize(model);
 
                 callingForm.PrizeComplete(model);
 

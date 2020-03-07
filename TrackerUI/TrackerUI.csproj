@@ -70,6 +70,12 @@
     <Compile Include="Helper Methods\Helper.cs" />
     <Compile Include="FormInterfaces\IPrizeRequester.cs" />
     <Compile Include="FormInterfaces\ITeamRequester.cs" />
+    <Compile Include="TournamentBracketViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TournamentBracketViewer.Designer.cs">
+      <DependentUpon>TournamentBracketViewer.cs</DependentUpon>
+    </Compile>
     <Compile Include="TournamentDashbordForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +103,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CreateTournamentForm.resx">
       <DependentUpon>CreateTournamentForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TournamentBracketViewer.resx">
+      <DependentUpon>TournamentBracketViewer.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TournamentDashbordForm.resx">
       <DependentUpon>TournamentDashbordForm.cs</DependentUpon>
